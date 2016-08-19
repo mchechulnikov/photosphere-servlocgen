@@ -19,7 +19,7 @@ PM> Install-Package Photosphere.ServiceLocatorGeneration
 <#@ import namespace="Photosphere.ServiceLocatorGeneration" #>
 <#= new ServiceLocatorGenerator(Host.ResolvePath(string.Empty),	"IFoo", "IBar").Generate() #>
 ```
-In a result we'll be have something like this:
+In a result we'll be have something like this
 ``` C#
 using System;
 using System.Collections.Generic;
@@ -32,9 +32,9 @@ namespace TestAssemblies
 
 		public ServiceLocator(IConfiguration configuration)
 		{
-		  var qiz = new Qiz();
-		  var bar = new Bar(qiz);
-		  _map.Add(typeof(IBar), bar);
+			var qiz = new Qiz();
+			var bar = new Bar(qiz);
+			_map.Add(typeof(IBar), bar);
 			var foo = new Foo(bar, buz);
 			_map.Add(typeof(foo), foo);
 		}
