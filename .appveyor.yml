@@ -44,7 +44,3 @@ deploy:
 artifacts:
   - path: $(sourcesFolder)\$(projectName)\bin\$(configuration)\
     name: $(projectName)-v$(APPVEYOR_BUILD_VERSION)
-
-test:
-  assemblies:
-    - '*Tests.dll'
