@@ -12,6 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photosphere.ServiceLocatorG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photosphere.ServiceLocatorGeneration.UnitTests", "Photosphere.ServiceLocatorGeneration.UnitTests\Photosphere.ServiceLocatorGeneration.UnitTests.csproj", "{E0379C10-769B-48FB-880C-4A94AD17B97D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photosphere.ServiceLocatorGeneration.TestAssembly", "Photosphere.ServiceLocatorGeneration.TestAssembly\Photosphere.ServiceLocatorGeneration.TestAssembly.csproj", "{E9F5CDC4-1DE3-4FC5-8FA9-24924FB6EF34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photosphere.ServiceLocatorGeneration.IntegrationTests", "Photosphere.ServiceLocatorGeneration.IntegrationTests\Photosphere.ServiceLocatorGeneration.IntegrationTests.csproj", "{B669D28E-A10B-43D6-9009-6328582CE8A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +30,14 @@ Global
 		{E0379C10-769B-48FB-880C-4A94AD17B97D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0379C10-769B-48FB-880C-4A94AD17B97D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0379C10-769B-48FB-880C-4A94AD17B97D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9F5CDC4-1DE3-4FC5-8FA9-24924FB6EF34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9F5CDC4-1DE3-4FC5-8FA9-24924FB6EF34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9F5CDC4-1DE3-4FC5-8FA9-24924FB6EF34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9F5CDC4-1DE3-4FC5-8FA9-24924FB6EF34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B669D28E-A10B-43D6-9009-6328582CE8A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B669D28E-A10B-43D6-9009-6328582CE8A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B669D28E-A10B-43D6-9009-6328582CE8A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B669D28E-A10B-43D6-9009-6328582CE8A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
