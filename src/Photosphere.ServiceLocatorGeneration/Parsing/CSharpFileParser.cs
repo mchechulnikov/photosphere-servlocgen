@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Text.RegularExpressions;
 using Photosphere.ServiceLocatorGeneration.Metadata;
 
 namespace Photosphere.ServiceLocatorGeneration.Parsing
@@ -31,36 +30,36 @@ namespace Photosphere.ServiceLocatorGeneration.Parsing
                 GetNamespace(content),
                 baseTypesNames,
                 GetCtorParametersTypes(content, className)
-                );
+            );
         }
 
         private static string GetClassName(string content)
         {
-            var value = new Regex("class [a-zA-Z0-9]+").Match(content).Value;
+            var value = ParsingRegex.ClassName.Match(content).Value;
             return value == string.Empty ? null : value.Substring(6);
         }
 
         private static bool IsStaticClass(string content)
         {
-            var value = new Regex("static class").Match(content).Value;
+            var value = ParsingRegex.StaticClass.Match(content).Value;
             return value != string.Empty;
         }
 
         private static bool IsAbstractClass(string content)
         {
-            var value = new Regex("abstract class").Match(content).Value;
+            var value = ParsingRegex.AbstractClass.Match(content).Value;
             return value != string.Empty;
         }
 
         private static string GetNamespace(string content)
         {
-            var value = new Regex("namespace [a-zA-Z0-9.]+").Match(content).Value;
+            var value = ParsingRegex.Namespace.Match(content).Value;
             return value == string.Empty ? null : value.Substring(10);
         }
 
         private static string[] GetBaseTypesNames(string content)
         {
-            var value = new Regex(":\\s*([a-zA-Z0-9]+,*\\s*)+").Match(content).Value;
+            var value = ParsingRegex.BaseTypes.Match(content).Value;
             if (value == string.Empty)
             {
                 return null;
@@ -71,7 +70,7 @@ namespace Photosphere.ServiceLocatorGeneration.Parsing
 
         private static string[] GetCtorParametersTypes(string content, string className)
         {
-            var value = new Regex(className + "\\s*\\((\\s*[(this) \\w=]+,*\\s*)+").Match(content).Value;
+            var value = ParsingRegex.GetCtorParameters(className).Match(content).Value;
             if (value == string.Empty)
             {
                 return null;
