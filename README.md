@@ -43,3 +43,12 @@ namespace TestAssemblies
 	}
 }
 ```
+
+## Example of using
+``` C#
+var serviceLocatpr = new ServiceLocator(new Configuration());
+var bar = serviceLocator.Get<IBar>();
+```
+
+## Warning!
+Friend, remember: service locator pattern is evil! It's only for projects that have to be a fast start. Service locator instance must be used only near entry point or root of application.
