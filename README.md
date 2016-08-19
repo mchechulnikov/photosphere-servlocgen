@@ -52,3 +52,6 @@ var bar = serviceLocator.Get<IBar>();
 
 ## Warning!
 Friend, remember: service locator pattern is evil! It's only for projects that have to be a fast start. Service locator instance must be used only near entry point or root of application.
+
+## Another example
+You can see [my DI framework code](https://github.com/sunloving/photosphere-di/tree/master/src/Photosphere.DependencyInjection).
