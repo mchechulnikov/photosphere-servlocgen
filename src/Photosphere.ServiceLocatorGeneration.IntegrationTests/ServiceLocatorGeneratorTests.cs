@@ -1,4 +1,6 @@
-﻿using Xunit;
+﻿using Photosphere.ServiceLocatorGeneration.TestAssembly;
+using Photosphere.ServiceLocatorGeneration.TestAssembly.Bars;
+using Xunit;
 
 namespace Photosphere.ServiceLocatorGeneration.IntegrationTests
 {
@@ -6,19 +8,24 @@ namespace Photosphere.ServiceLocatorGeneration.IntegrationTests
     {
         private const string TestAssemblyPath = @"..\..\..\Photosphere.ServiceLocatorGeneration.TestAssembly";
 
+        private static ServiceLocatorGenerator NewServiceLocator
+            => new ServiceLocatorGenerator(new ServiceLocatorConfiguration
+            {
+                HostProvidedPath = TestAssemblyPath,
+                ServicesTypes = new[] { typeof(IFoo), typeof(IBar) }
+            });
+
         [Fact]
         internal void Generate_ValidSourcesFiles_NotNull()
         {
-            var generator = new ServiceLocatorGenerator(TestAssemblyPath, "IFoo", "IBar");
-            var result = generator.Generate();
+            var result = NewServiceLocator.Generate();
             Assert.NotNull(result);
         }
 
         [Fact]
         internal void Generate_ValidSourcesFiles_ValidUsingDirectves()
         {
-            var generator = new ServiceLocatorGenerator(TestAssemblyPath, "IFoo", "IBar");
-            var result = generator.Generate();
+            var result = NewServiceLocator.Generate();
             var expected = new[]
             {
                 "using Photosphere.ServiceLocatorGeneration.TestAssembly;",
@@ -33,8 +40,7 @@ namespace Photosphere.ServiceLocatorGeneration.IntegrationTests
         [Fact]
         internal void Generate_ValidSourcesFiles_ValidVarsStatements()
         {
-            var generator = new ServiceLocatorGenerator(TestAssemblyPath, "IFoo", "IBar");
-            var result = generator.Generate();
+            var result = NewServiceLocator.Generate();
             var expected = new[]
             {
                 "var foo = new Foo();",
@@ -50,8 +56,7 @@ namespace Photosphere.ServiceLocatorGeneration.IntegrationTests
         [Fact]
         internal void Generate_ValidSourcesFiles_ValidAddToDictionaryStatements()
         {
-            var generator = new ServiceLocatorGenerator(TestAssemblyPath, "IFoo", "IBar");
-            var result = generator.Generate();
+            var result = NewServiceLocator.Generate();
             var expected = new[]
             {
                 ".Add(typeof (IFoo), foo)",

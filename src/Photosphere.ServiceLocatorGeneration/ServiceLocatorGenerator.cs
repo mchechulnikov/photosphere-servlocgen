@@ -14,12 +14,14 @@ namespace Photosphere.ServiceLocatorGeneration
         private readonly SourceFilesContentReader _sourceFilesContentReader;
         private readonly UsingDirectivesGenerator _usingDirectivesGenerator;
         private readonly ConstructorGenerator _constructorGenerator;
+        private readonly string _serviceLocatorPrefix;
 
-        public ServiceLocatorGenerator(string hostProvidedPath, params string[] dependencies)
+        public ServiceLocatorGenerator(ServiceLocatorConfiguration configuration)
         {
-            _sourceFilesContentReader = new SourceFilesContentReader(hostProvidedPath, SourceFilesExtension.CSharp);
+            _sourceFilesContentReader = new SourceFilesContentReader(configuration.HostProvidedPath, SourceFilesExtension.CSharp);
             _usingDirectivesGenerator = new UsingDirectivesGenerator();
-            _constructorGenerator = new ConstructorGenerator(dependencies);
+            _constructorGenerator = new ConstructorGenerator(configuration.ServicesTypes, configuration.ParametersTypes);
+            _serviceLocatorPrefix = configuration.ServiceLocatorPrefix;
         }
 
         public string Generate()
@@ -29,7 +31,7 @@ namespace Photosphere.ServiceLocatorGeneration
 
             return ServiceLocatorTemplate.ServiceLocator(
                 _usingDirectivesGenerator.Generate(metadatas),
-                string.Empty,
+                _serviceLocatorPrefix,
                 "IContainerConfiguration containerConfiguration",
                 _constructorGenerator.Generate(metadatas)
             );

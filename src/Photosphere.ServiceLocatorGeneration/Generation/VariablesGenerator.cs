@@ -12,7 +12,7 @@ namespace Photosphere.ServiceLocatorGeneration.Generation
             IReadOnlyCollection<ClassMetadata> metadatas,
             string className,
             IReadOnlyCollection<string> parametersTypes,
-            ISet<string> alreadyActivatedList)
+            IList<string> alreadyActivatedList)
         {
             var result = new List<string>();
             if (parametersTypes == null)
