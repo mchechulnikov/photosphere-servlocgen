@@ -56,6 +56,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Photosphere.ServiceLocatorGeneration.TestAssembly\Photosphere.ServiceLocatorGeneration.TestAssembly.csproj">
+      <Project>{e9f5cdc4-1de3-4fc5-8fa9-24924fb6ef34}</Project>
+      <Name>Photosphere.ServiceLocatorGeneration.TestAssembly</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Photosphere.ServiceLocatorGeneration\Photosphere.ServiceLocatorGeneration.csproj">
+      <Project>{73EC53C1-1E47-4042-8A1E-D7995BD2B3D0}</Project>
+      <Name>Photosphere.ServiceLocatorGeneration</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

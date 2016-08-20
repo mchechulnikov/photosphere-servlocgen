@@ -34,12 +34,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bars\Buz.cs" />
     <Compile Include="Foo.cs" />
     <Compile Include="FooBase.cs" />
-    <Compile Include="IBar.cs" />
+    <Compile Include="Bars\IBar.cs" />
+    <Compile Include="Bars\IBuz.cs" />
     <Compile Include="IFoo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Bar.cs" />
+    <Compile Include="Bars\Bar.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

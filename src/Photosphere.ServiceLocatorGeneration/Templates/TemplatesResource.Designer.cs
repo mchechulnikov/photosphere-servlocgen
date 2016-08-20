@@ -91,7 +91,7 @@ namespace Photosphere.ServiceLocatorGeneration.Templates {
         ///
         ///		public {1}ServiceLocator({2})
         ///		{{
-        ///{3}
+        ///			{3}
         ///		}}
         ///
         ///		public T Get&lt;T&gt;() where T : class =&gt; (T) _map[typeof(T)];
@@ -102,6 +102,15 @@ namespace Photosphere.ServiceLocatorGeneration.Templates {
         internal static string ServiceLocator {
             get {
                 return ResourceManager.GetString("ServiceLocator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to typeof ({0}).
+        /// </summary>
+        internal static string TypeofExpression {
+            get {
+                return ResourceManager.GetString("TypeofExpression", resourceCulture);
             }
         }
         

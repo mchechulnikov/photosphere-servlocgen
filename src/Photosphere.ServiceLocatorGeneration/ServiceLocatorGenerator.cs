@@ -42,43 +42,44 @@ namespace Photosphere.ServiceLocatorGeneration
                 .Select(t => t.Namespace)
                 .Where(n => n != null)
                 .Distinct()
-                .Aggregate(string.Empty, (c, ns) => c + string.Format(TemplatesResource.UsingDirective, ns) + "\r\n");
+                .Select(ns => string.Format(TemplatesResource.UsingDirective, ns))
+                .JoinByNewLine();
 
         private string GenerateConstructor(IEnumerable<ClassMetadata> classesMetadata, VariablesGenerator variablesGenerator)
         {
-            var result = string.Empty;
-            var alreadyActivated = new HashSet<string>();
-            alreadyActivated.Add("containerConfiguration");
-            foreach (
-                var type in classesMetadata.Where(x => x.BaseTypesNames != null && Contains(x.BaseTypesNames, _dependencies)))
+            var result = new List<string>();
+            var alreadyActivated = new HashSet<string>
+            {
+                "containerConfiguration"
+            };
+            foreach (var type in classesMetadata.Where(x => x.BaseTypesNames != null && Contains(x.BaseTypesNames, _dependencies)))
             {
                 var serviceName = _dependencies.First(x => type.BaseTypesNames.Contains(x));
                 if (type.CtorParametersTypesNames != null)
                 {
-                    result += variablesGenerator.Generate(type.ClassName, type.CtorParametersTypesNames, alreadyActivated);
+                    result.AddRange(variablesGenerator.Generate(type.ClassName, type.CtorParametersTypesNames, alreadyActivated));
                 }
                 else
                 {
                     var varName = type.ClassName.ToLowerCamelCase();
                     if (!alreadyActivated.Contains(varName))
                     {
-                        result += "\t\t\t" + string.Format(
+                        result.Add(string.Format(
                             TemplatesResource.VariableStatement,
                             varName,
                             string.Format(TemplatesResource.NewInstanceStatement, type.ClassName, string.Empty)
-                        ) + "\r\n";
-                        continue;
+                        ));
+                        alreadyActivated.Add(varName);                        
                     }
-                    alreadyActivated.Add(varName);
                 }
-                result += "\t\t\t" + string.Format(
+                result.Add(string.Format(
                     TemplatesResource.AddToDictinaryStatement,
                     "_map",
-                    $"typeof({serviceName})",
+                    string.Format(TemplatesResource.TypeofExpression, serviceName),
                     type.ClassName.ToLowerCamelCase()
-                ) + "\r\n";
+                ));
             }
-            return result;
+            return result.JoinByNewLineAndTabs(3);
         }
 
         private static IReadOnlyCollection<ClassMetadata> GetClassesMetadata(IEnumerable<string> filesContents) =>

@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Photosphere.ServiceLocatorGeneration.Extensions
 {
@@ -9,6 +11,21 @@ namespace Photosphere.ServiceLocatorGeneration.Extensions
         public static string ToLowerCamelCase(this string className) =>
             char.ToLowerInvariant(className[0]) + className.Substring(1);
 
-        public static string JoinWithComma(this string[] strs) => string.Join(", ", strs);
+        public static string JoinByCommaAndSpace(this IEnumerable<string> strs) => string.Join(", ", strs);
+
+        public static string JoinByNewLine(this IEnumerable<string> strs) => string.Join("\n", strs);
+
+        public static string JoinByNewLineAndTabs(this IEnumerable<string> strs, int tabsCount)
+        {
+            var separator = new StringBuilder("\r\n");
+
+            var i = 0;
+            while (i < tabsCount)
+            {
+                separator.Append("\t");
+                i++;
+            }
+            return string.Join(separator.ToString(), strs);
+        }
     }
 }

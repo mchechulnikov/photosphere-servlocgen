@@ -15,18 +15,20 @@ namespace Photosphere.ServiceLocatorGeneration.Generation
             _classes = classes;
         }
 
-        public string Generate(string className, IReadOnlyCollection<string> parametersTypes, ISet<string> alreadyActivatedList)
+        public IReadOnlyList<string> Generate(
+            string className, IReadOnlyCollection<string> parametersTypes, ISet<string> alreadyActivatedList)
         {
+            var result = new List<string>();
             if (parametersTypes == null)
             {
-                return "\t\t\t" + string.Format(
+                result.Add(string.Format(
                     TemplatesResource.VariableStatement,
                     className.ToLowerCamelCase(),
                     string.Format(TemplatesResource.NewInstanceStatement, className, string.Empty)
-                ) + "\r\n";
+                ));
+                return result;
             }
 
-            var result = string.Empty;
             var parametersList = new List<string>();
             var parameterClassMetadatas = GetParameterClassInfos(parametersTypes);
             foreach (var parameterClassMetadata in parameterClassMetadatas)
@@ -39,17 +41,17 @@ namespace Photosphere.ServiceLocatorGeneration.Generation
                     continue;
                 }
                 alreadyActivatedList.Add(varName);
-                result += Generate(
+                result.AddRange(Generate(
                     parameterClassMetadata.ClassName,
                     parameterClassMetadata.CtorParametersTypesNames?.ToArray(),
                     alreadyActivatedList
-                );
+                ));
             }
-            result += "\t\t\t" + string.Format(
+            result.Add(string.Format(
                 TemplatesResource.VariableStatement,
                 className.ToLowerCamelCase(),
-                string.Format(TemplatesResource.NewInstanceStatement, className, string.Join(", ", parametersList))
-            ) + "\r\n";
+                string.Format(TemplatesResource.NewInstanceStatement, className, parametersList.JoinByCommaAndSpace())
+            ));
             return result;
         }
 
