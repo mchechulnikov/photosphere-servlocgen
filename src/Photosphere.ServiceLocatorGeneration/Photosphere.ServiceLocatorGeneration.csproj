@@ -34,16 +34,18 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Generation\ConstructorGenerator.cs" />
+    <Compile Include="Generation\UsingDirectivesGenerator.cs" />
     <Compile Include="Generation\VariablesGenerator.cs" />
     <Compile Include="Metadata\ClassMetadata.cs" />
     <Compile Include="Parsing\CSharpFileParser.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="FileSystem\ProjectPathProvider.cs" />
     <Compile Include="FileSystem\SourceFilesContentReader.cs" />
     <Compile Include="Parsing\ParsingRegex.cs" />
     <Compile Include="ServiceLocatorGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FileSystem\SourceFilesExtension.cs" />
+    <Compile Include="Templates\ServiceLocatorTemplate.cs" />
     <Compile Include="Templates\TemplatesResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

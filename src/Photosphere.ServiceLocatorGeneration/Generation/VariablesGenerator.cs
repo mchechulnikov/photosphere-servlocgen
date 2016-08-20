@@ -2,35 +2,30 @@
 using System.Linq;
 using Photosphere.ServiceLocatorGeneration.Extensions;
 using Photosphere.ServiceLocatorGeneration.Metadata;
-using Photosphere.ServiceLocatorGeneration.Templates;
+using static Photosphere.ServiceLocatorGeneration.Templates.ServiceLocatorTemplate;
 
 namespace Photosphere.ServiceLocatorGeneration.Generation
 {
     internal class VariablesGenerator
     {
-        private readonly IReadOnlyCollection<ClassMetadata> _classes;
-
-        public VariablesGenerator(IReadOnlyCollection<ClassMetadata> classes)
-        {
-            _classes = classes;
-        }
-
         public IReadOnlyList<string> Generate(
-            string className, IReadOnlyCollection<string> parametersTypes, ISet<string> alreadyActivatedList)
+            IReadOnlyCollection<ClassMetadata> metadatas,
+            string className,
+            IReadOnlyCollection<string> parametersTypes,
+            ISet<string> alreadyActivatedList)
         {
             var result = new List<string>();
             if (parametersTypes == null)
             {
-                result.Add(string.Format(
-                    TemplatesResource.VariableStatement,
+                result.Add(VariableStatement(
                     className.ToLowerCamelCase(),
-                    string.Format(TemplatesResource.NewInstanceStatement, className, string.Empty)
+                    NewInstanceStatement(className, string.Empty)
                 ));
                 return result;
             }
 
             var parametersList = new List<string>();
-            var parameterClassMetadatas = GetParameterClassInfos(parametersTypes);
+            var parameterClassMetadatas = GetParameterClassInfos(metadatas, parametersTypes);
             foreach (var parameterClassMetadata in parameterClassMetadatas)
             {
                 var varName = parameterClassMetadata.ClassName.ToLowerCamelCase();
@@ -42,22 +37,23 @@ namespace Photosphere.ServiceLocatorGeneration.Generation
                 }
                 alreadyActivatedList.Add(varName);
                 result.AddRange(Generate(
+                    metadatas,
                     parameterClassMetadata.ClassName,
                     parameterClassMetadata.CtorParametersTypesNames?.ToArray(),
                     alreadyActivatedList
                 ));
             }
-            result.Add(string.Format(
-                TemplatesResource.VariableStatement,
+            result.Add(VariableStatement(
                 className.ToLowerCamelCase(),
-                string.Format(TemplatesResource.NewInstanceStatement, className, parametersList.JoinByCommaAndSpace())
+                NewInstanceStatement(className, parametersList.JoinByCommaAndSpace())
             ));
             return result;
         }
 
-        private IEnumerable<ClassMetadata> GetParameterClassInfos(IEnumerable<string> parametersTypes) =>
+        private static IEnumerable<ClassMetadata> GetParameterClassInfos(
+            IReadOnlyCollection<ClassMetadata> metadatas, IEnumerable<string> parametersTypes) =>
             parametersTypes
-                .Select(pt => _classes.FirstOrDefault(x => x.BaseTypesNames != null && x.BaseTypesNames.Contains(pt)))
+                .Select(pt => metadatas.FirstOrDefault(x => x.BaseTypesNames != null && x.BaseTypesNames.Contains(pt)))
                 .Where(x => x != null);
     }
 }
