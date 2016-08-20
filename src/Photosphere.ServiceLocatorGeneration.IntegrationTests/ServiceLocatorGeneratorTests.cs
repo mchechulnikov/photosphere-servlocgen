@@ -12,7 +12,7 @@ namespace Photosphere.ServiceLocatorGeneration.IntegrationTests
             => new ServiceLocatorGenerator(new ServiceLocatorConfiguration
             {
                 HostProvidedPath = TestAssemblyPath,
-                ServicesTypes = new[] { typeof(IFoo), typeof(IBar) }
+                ServicesTypesNames = new[] { typeof(IFoo).Name, typeof(IBar).Name }
             });
 
         [Fact]

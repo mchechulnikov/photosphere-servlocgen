@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Photosphere.ServiceLocatorGeneration.Analysis.Metadata;
 using Photosphere.ServiceLocatorGeneration.Extensions;
@@ -16,8 +15,8 @@ namespace Photosphere.ServiceLocatorGeneration.Generation
 
         public ConstructorBodyGenerator(ServiceLocatorConfiguration configuration)
         {
-            _servicesTypes = configuration.ServicesTypes.Select(t => t.Name).ToArray();
-            _parametersNames = configuration.Parameters.Keys.Select(t => t.Name).ToArray();
+            _servicesTypes = configuration.ServicesTypesNames.ToArray();
+            _parametersNames = configuration.Parameters.Keys.ToArray();
             _variablesGenerator = new VariablesGenerator();
         }
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Photosphere.ServiceLocatorGeneration
 {
@@ -8,16 +7,16 @@ namespace Photosphere.ServiceLocatorGeneration
         public ServiceLocatorConfiguration()
         {
             ServiceLocatorPrefix = string.Empty;
-            Parameters = new Dictionary<Type, string>();
-            ServicesTypes = new List<Type>();
+            Parameters = new Dictionary<string, string>();
+            ServicesTypesNames = new List<string>();
         }
 
         public string HostProvidedPath { get; set; }
 
         public string ServiceLocatorPrefix { get; set; }
 
-        public IReadOnlyDictionary<Type, string> Parameters { get; set; }
+        public IReadOnlyDictionary<string, string> Parameters { get; set; }
 
-        public IReadOnlyCollection<Type> ServicesTypes { get; set; }
+        public IReadOnlyCollection<string> ServicesTypesNames { get; set; }
     }
 }
