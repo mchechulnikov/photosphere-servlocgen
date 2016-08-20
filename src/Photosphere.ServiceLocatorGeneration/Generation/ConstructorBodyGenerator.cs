@@ -16,7 +16,7 @@ namespace Photosphere.ServiceLocatorGeneration.Generation
         public ConstructorBodyGenerator(ServiceLocatorConfiguration configuration)
         {
             _servicesTypes = configuration.ServicesTypesNames.ToArray();
-            _parametersNames = configuration.Parameters.Keys.ToArray();
+            _parametersNames = configuration.Parameters.Values.ToArray();
             _variablesGenerator = new VariablesGenerator();
         }
 
