@@ -15,9 +15,19 @@ PM> Install-Package Photosphere.ServiceLocatorGeneration
 ```
 <#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ output extension=".generated.cs" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Collections" #>
 <#@ assembly name="$(ProjectDir)$(OutDir)Photosphere.ServiceLocatorGeneration.dll" #>
+<#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Photosphere.ServiceLocatorGeneration" #>
-<#= new ServiceLocatorGenerator(Host.ResolvePath(string.Empty),	"IFoo", "IBar").Generate() #>
+<#=
+new ServiceLocatorGenerator(new ServiceLocatorConfiguration
+{
+	HostProvidedPath = Host.ResolvePath(string.Empty),
+	Parameters = new Dictionary<string, string> { { "IContainerConfiguration", "containerConfiguration" } },
+	ServicesTypesNames = new [] { "IFoo", "IBar" }
+}).Generate()
+#>
 ```
 In a result we'll be have something like this
 ``` C#
@@ -47,7 +57,9 @@ namespace TestAssemblies
 ## Example of using
 ``` C#
 var serviceLocatpr = new ServiceLocator(new Configuration());
+
 var bar = serviceLocator.Get<IBar>();
+var foo = serviceLocator.Get<IFoo>();
 ```
 
 ## Warning!
