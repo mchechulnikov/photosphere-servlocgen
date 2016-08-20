@@ -1,5 +1,5 @@
 # Photosphere.ServiceLocatorGeneration
-Simple design-time ServiceLocator generator.
+Simple design-time ServiceLocator generator. May be useful for simple applications with minimum dependencies.
 
 ## Status
 [![Windows build Status](https://ci.appveyor.com/api/projects/status/github/sunloving/photosphere-servlocgen?retina=true&svg=true)](https://ci.appveyor.com/project/sunloving/photosphere-servlocgen)
