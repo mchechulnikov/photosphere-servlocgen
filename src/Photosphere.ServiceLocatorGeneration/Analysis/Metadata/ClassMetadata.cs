@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Photosphere.ServiceLocatorGeneration.Metadata
+namespace Photosphere.ServiceLocatorGeneration.Analysis.Metadata
 {
     internal class ClassMetadata
     {

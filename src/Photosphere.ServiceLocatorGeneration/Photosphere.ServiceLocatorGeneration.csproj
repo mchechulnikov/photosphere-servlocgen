@@ -34,10 +34,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generation\ConstructorGenerator.cs" />
+    <Compile Include="Generation\ConstructorBodyGenerator.cs" />
+    <Compile Include="Generation\ParametersGenerator.cs" />
     <Compile Include="Generation\UsingDirectivesGenerator.cs" />
     <Compile Include="Generation\VariablesGenerator.cs" />
-    <Compile Include="Metadata\ClassMetadata.cs" />
+    <Compile Include="Analysis\Metadata\ClassMetadata.cs" />
     <Compile Include="Parsing\CSharpFileParser.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="FileSystem\SourceFilesContentReader.cs" />
@@ -65,9 +66,7 @@
       <LastGenOutput>TemplatesResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

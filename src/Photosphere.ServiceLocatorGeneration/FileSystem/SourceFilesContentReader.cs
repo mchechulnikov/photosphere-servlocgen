@@ -10,13 +10,13 @@ namespace Photosphere.ServiceLocatorGeneration.FileSystem
         private readonly string _projectPath;
         private readonly string _extension;
 
-        public SourceFilesContentReader(string hostProvidedPath, string extension)
+        public SourceFilesContentReader(ServiceLocatorConfiguration configuration, string extension)
         {
             if (!extension.IsWord())
             {
                 throw new ArgumentException($"String `{extension}` is not extension");
             }
-            _projectPath = GetProjectPath(hostProvidedPath);
+            _projectPath = GetProjectPath(configuration.HostProvidedPath);
             _extension = extension;
         }
 

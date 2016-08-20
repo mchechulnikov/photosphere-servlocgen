@@ -19,5 +19,8 @@
 
         public static string TypeofExpression(string argument)
             => string.Format(TemplatesResource.TypeofExpression, argument);
+
+        public static string ParameterExpression(string typeName, string parameterName)
+            => string.Format(TemplatesResource.ParameterExpression, typeName, parameterName);
     }
 }

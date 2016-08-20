@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Photosphere.ServiceLocatorGeneration.Analysis.Metadata;
 using Photosphere.ServiceLocatorGeneration.Extensions;
-using Photosphere.ServiceLocatorGeneration.Metadata;
 using static Photosphere.ServiceLocatorGeneration.Templates.ServiceLocatorTemplate;
 
 namespace Photosphere.ServiceLocatorGeneration.Generation

@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Photosphere.ServiceLocatorGeneration.Metadata;
+using Photosphere.ServiceLocatorGeneration.Analysis.Metadata;
 
 namespace Photosphere.ServiceLocatorGeneration.Parsing
 {

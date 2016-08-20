@@ -8,7 +8,7 @@ namespace Photosphere.ServiceLocatorGeneration
         public ServiceLocatorConfiguration()
         {
             ServiceLocatorPrefix = string.Empty;
-            ParametersTypes = new List<Type>();
+            Parameters = new Dictionary<Type, string>();
             ServicesTypes = new List<Type>();
         }
 
@@ -16,7 +16,7 @@ namespace Photosphere.ServiceLocatorGeneration
 
         public string ServiceLocatorPrefix { get; set; }
 
-        public IReadOnlyCollection<Type> ParametersTypes { get; set; }
+        public IReadOnlyDictionary<Type, string> Parameters { get; set; }
 
         public IReadOnlyCollection<Type> ServicesTypes { get; set; }
     }

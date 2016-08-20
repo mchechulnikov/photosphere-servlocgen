@@ -79,6 +79,15 @@ namespace Photosphere.ServiceLocatorGeneration.Templates {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} {1}.
+        /// </summary>
+        internal static string ParameterExpression {
+            get {
+                return ResourceManager.GetString("ParameterExpression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to using System;
         ///using System.Collections.Generic;
         ///{0}
