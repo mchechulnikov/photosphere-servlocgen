@@ -24,7 +24,7 @@ PM> Install-Package Photosphere.ServiceLocatorGeneration
 new ServiceLocatorGenerator(new ServiceLocatorConfiguration
 {
 	HostProvidedPath = Host.ResolvePath(string.Empty),
-	Parameters = new Dictionary<string, string> { { "IContainerConfiguration", "containerConfiguration" } },
+	Parameters = new Dictionary<string, string> { { "IConfiguration", "configuration" } },
 	ServicesTypesNames = new [] { "IFoo", "IBar" }
 }).Generate()
 #>
