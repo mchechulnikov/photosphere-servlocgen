@@ -66,4 +66,4 @@ var foo = serviceLocator.Get<IFoo>();
 Friend, remember: service locator pattern is evil! It's only for projects that have to be a fast start. Service locator instance must be used only near entry point or root of application.
 
 ## Another example
-You can see [my DI framework code](https://github.com/sunloving/photosphere-di/tree/master/src/Photosphere.DependencyInjection): [`ServiceLocator.tt`](https://github.com/sunloving/photosphere-di/blob/master/src/Photosphere.DependencyInjection/ServiceLocator.tt) and [`ServiceLocator.generated.cs`](https://github.com/sunloving/photosphere-di/blob/master/src/Photosphere.DependencyInjection/ServiceLocator.generated.cs).
+You can see [my DI framework code](https://github.com/sunloving/photosphere-di/tree/master/src/Photosphere.DependencyInjection): [`ServiceLocator.cs`](https://github.com/sunloving/photosphere-di/blob/master/src/Photosphere.DependencyInjection/ServiceLocator.cs).
